@@ -1,0 +1,21 @@
+//
+//
+//
+.flickity-page-dots {
+  bottom: 12px !important;
+
+  .dot {
+    margin-left: 4px;
+    margin-right: 4px;
+
+    width: 12px;
+    height: 12px;
+
+    background-color: #fff !important;
+    opacity: .5;
+
+    &.is-selected {
+      background-color: #e64741 !important;
+    }
+  }
+}
