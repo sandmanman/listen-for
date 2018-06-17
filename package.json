@@ -10,7 +10,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "flex-layout-attribute": "^1.0.3",
+    "lodash": "^4.17.10",
+    "qs": "^6.5.2",
+    "vant": "^1.1.8",
     "vue": "^2.5.2",
     "vue-flickity": "^1.1.2",
     "vue-router": "^3.0.1"

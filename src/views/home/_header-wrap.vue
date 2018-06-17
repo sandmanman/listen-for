@@ -1,5 +1,5 @@
 <template>
-  <div class="header-wrap">
+  <header class="header-wrap">
     <div class="header-control-bar" layout="row center-center">
       <div class="search-bar ignore" layout="row center-center">
         <i class="icon-search"></i>
@@ -10,7 +10,7 @@
       <a href="#" class="nav-item active">个性推荐</a>
       <a href="#" class="nav-item">主播电台</a>
     </nav>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -21,6 +21,12 @@ export default {
 
 <style lang="scss" scoped>
 .header-wrap {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  
   width: 100%;
 
   background-color: #e64741;

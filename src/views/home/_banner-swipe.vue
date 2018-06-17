@@ -1,8 +1,8 @@
 <template>
   <div class="banner-swipe">
-    <flickity ref="flickity" :options="flickityOptions" class="swipe">
+    <flickity ref="flickity" :options="flickityOptions" class="swipe" v-if="banners">
       <div class="swipe-item" v-for="(item, index) in banners" :key="index"
-      :style="{backgroundImage:`url(${item})`}"></div>
+      :style="{backgroundImage:`url(${item.picUrl})`}"></div>
     </flickity>
   </div>
 </template>
@@ -11,7 +11,7 @@
 import Flickity from 'vue-flickity'
 
 export default {
-  name: 'bannerSlider',
+  name: 'bannerSwipe',
   components: {
     Flickity
   },
@@ -19,7 +19,8 @@ export default {
     return {
       flickityOptions: {
         prevNextButtons: false,
-        autoPlay: true
+        autoPlay: true,
+        lazyLoad: true
       }
     }
   },
@@ -57,13 +58,17 @@ export default {
 
   margin-left: 12px;
   margin-right: 12px;
+  min-height: 238px;
+  overflow: hidden;
+
+  border-radius: 11px;
 }
 .swipe-item {
   width: 100%;
   min-height: 238px;
   overflow: hidden;
-
-  border-radius: 11px;
+  
+  background-color: #eee;
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

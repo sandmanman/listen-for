@@ -14,7 +14,7 @@ module.exports = {
       //viewportHeight: 1334, // 视窗的高度，根据750设备的宽度来指定，一般指定1334，也可以不配置
       unitPrecision: 3, // 指定`px`转换为视窗单位值的小数位数（很多时候无法整除）
       viewportUnit: 'vw', // 指定需要转换成的视窗单位，建议使用vw 
-      selectorBlackList: ['.ignore', '.hairlines'], // 指定不需要转换的类，可自定义，可无限增加，建议定义一到两个通用的类名
+      selectorBlackList: ['.ignore', '.hairlines', '.space-line'], // 指定不需要转换的类，可自定义，可无限增加，建议定义一到两个通用的类名
       minPixelValue: 1, // 小于或等于`1`不转换，也可自定义
       mediaQuery: false // 允许在媒体查询中转换`px`
     }, 

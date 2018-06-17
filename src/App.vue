@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <main>
-      <router-view></router-view>
-    </main>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -16,13 +14,6 @@ export default {
 @import 'flex-layout-attribute';
 @import './assets/css/custom.scss';
 
-body {
-  margin: 0;
-  font-family: Helvetica Neue,Helvetica,Arial,SCREEN GP Sans SC,sans-serif;
-}
-img {
-  content: normal !important;
-}
 #app {
   margin-left: auto;
   margin-right: auto;

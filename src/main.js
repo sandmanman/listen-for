@@ -4,6 +4,17 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+// toast
+import Toast from 'vant/lib/toast'
+import 'vant/lib/vant-css/base.css'
+import 'vant/lib/vant-css/toast.css'
+
+// Loadsh
+var _ = require('lodash/core')
+
+import AXIOS from './utils/axios'
+Vue.prototype.$http = AXIOS
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
