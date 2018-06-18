@@ -24,29 +24,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.panel {
-  padding-left: 8px;
-  padding-right: 8px;
-}
-.panel-header {
-  margin-top: 35px;
-  margin-bottom: 25px;
-}
-.panel-title {
-  margin: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-
-  font-size: 34px;
-
-  > a {
-    color: #2e2e30;
-  }
-}
-.panel-body {
-  flex-wrap: wrap;
-}
-
 .playlist-card {
   margin-left: 4px;
   margin-right: 4px;

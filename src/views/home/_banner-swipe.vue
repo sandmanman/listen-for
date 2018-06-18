@@ -38,6 +38,8 @@ export default {
   position: relative;
 
   padding-top: 20px;
+  
+  min-height: 238px;
 
   &:before {
     content: '';
@@ -58,7 +60,6 @@ export default {
 
   margin-left: 12px;
   margin-right: 12px;
-  min-height: 238px;
   overflow: hidden;
 
   border-radius: 11px;

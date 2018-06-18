@@ -12,8 +12,8 @@ import 'vant/lib/vant-css/toast.css'
 // Loadsh
 var _ = require('lodash/core')
 
-import AXIOS from './utils/axios'
-Vue.prototype.$http = AXIOS
+import axios from './utils/axios'
+Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 
