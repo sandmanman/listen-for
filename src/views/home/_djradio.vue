@@ -1,12 +1,13 @@
 <template>
   <div class="panel">
     <div class="panel-header">
-      <h3 class="panel-title"><a href="#">推荐歌单</a></h3>
+      <h3 class="panel-title"><a href="#">主播电台</a></h3>
     </div>
-    <div class="panel-body" layout="row top-center" v-if="playlist">
-      <a href="#" class="playlist-card" v-for="item in playlist" :key="item.id">
+    <div class="panel-body" layout="row top-center" v-if="djRadios">
+      <a href="#" class="djradio-card" v-for="item in djRadios" :key="item.id">
         <div class="cover" :style="{backgroundImage:`url(${item.picUrl})`}"></div>
         <p class="title">{{item.name}}</p>
+        <span class="radio-name">{{item.program.radio.name}}</span>
       </a>
     </div>
   </div>
@@ -14,9 +15,9 @@
 
 <script>
 export default {
-  name: 'playlist',
+  name: 'djRadio',
   props: {
-    playlist: {
+    djRadios: {
       type: Array
     }
   }
@@ -24,7 +25,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.playlist-card {
+.djradio-card {
+  position: relative;
+
   margin-left: 4px;
   margin-right: 4px;
   margin-bottom: 25px;
@@ -32,6 +35,8 @@ export default {
   width: 32%;
 
   .cover {
+    position: relative;
+
     padding-top: 100%;
 
     background-color: #eee;
@@ -40,6 +45,23 @@ export default {
     background-size: cover;
 
     border-radius: 5px;
+
+    &:after {
+      content: '';
+
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      width: 100%;
+      height: 60px;
+
+      border-radius: 0 0 5px 5px;
+
+      background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.4));
+
+    }
   }
   .title {
     margin-top: 10px;
@@ -58,7 +80,22 @@ export default {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
   }
+  .radio-name {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    top: 60%;
+
+    color: #fff;
+    font-size: 22px;
+
+    word-break: break-all;
+    text-overflow: ellipsis;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
 }
 </style>
-
 

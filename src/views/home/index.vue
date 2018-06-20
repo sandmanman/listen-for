@@ -8,9 +8,11 @@
       <div class="space-line"></div>
 
       <!-- 推荐歌单 -->
-      <playlist :playlist="recommondPlaylist"></playlist>
+      <playlist :playlist="playlist"></playlist>
       <!-- 最新音乐 -->
-      <album-list :albumList="newestAlbums"></album-list>
+      <latest-albums :latestAlbums="latestAlbums"></latest-albums>
+      <!-- 主播电台 -->
+      <dj-radios :djRadios="djRadios"></dj-radios>
     </div>
 
     <tabbar></tabbar>
@@ -23,7 +25,8 @@ import HeaderWrap from './_header-wrap'
 import BannerSwipe from './_banner-swipe'
 import QuickMenu from './_quick-menu'
 import Playlist from './_playlist'
-import albumList from './_album-list'
+import LatestAlbums from './_latest-albums'
+import DjRadios from './_djradio'
 
 export default {
   name: 'home',
@@ -33,20 +36,23 @@ export default {
     BannerSwipe,
     QuickMenu,
     Playlist,
-    albumList
+    LatestAlbums,
+    DjRadios
   },
   data(){
     return {
       banners: null,
-      recommondPlaylist: null,
-      newestAlbums: null
+      playlist: null,
+      latestAlbums: null,
+      djRadios: null
     }
   },
   created() {
     // get data
     this.getBanners()
-    this.getRecommondPlaylist()
-    this.getNewestAlubm()
+    this.getPlaylist()
+    this.getLatestAlbums()
+    this.getDjRadios()
   },
   methods: {
     // 获取banner
@@ -57,15 +63,21 @@ export default {
 
     // 获取推荐歌单
     // to do 登录后推荐歌单数据不同
-    getRecommondPlaylist: async function() {
-      let res = await this.$http.get('/personalized')
-      this.recommondPlaylist = _.slice(res.result, 0, 6)
+    getPlaylist: async function() {
+      let res = await this.$http.get('/personalized?limit=6')
+      this.playlist = res.result
     },
     
     // 获取最新音乐
-    getNewestAlubm: async function() {
+    getLatestAlbums: async function() {
       let res = await this.$http.get('/personalized/newsong')
-      this.newestAlbums = _.slice(res.result, 0, 5)
+      this.latestAlbums = _.slice(res.result, 0 , 5)
+    },
+
+    // 获取主播电台
+    getDjRadios: async function() {
+      let res = await this.$http.get('/personalized/djprogram?limit=6')
+      this.djRadios = res.result
     }
 
   }

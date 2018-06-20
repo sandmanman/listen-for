@@ -10,7 +10,7 @@ import { BASE_URL } from './env'
 
 axios.defaults.baseURL = BASE_URL
 axios.defaults.timeout = 5000
-// axios.defaults.withCredentials = true // `withCredentials` 表示跨域请求时是否需要使用凭证
+axios.defaults.withCredentials = true // `withCredentials` 表示跨域请求时是否需要使用凭证
 
 // chack status
 // http状态码

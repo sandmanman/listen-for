@@ -26,18 +26,20 @@ router.beforeEach((to, from, next) => {
       let lifeTime = JSON.parse(window.localStorage.getItem('currentUserInfo')).lifeTime * 1000
       let currentTime = new Date().getTime() // 当前时间的时间戳
       if (currentTime < lifeTime) {
-        next();
+        next()
       } else {
         Toast.fail('登录已过期,请重新登录')
 
         next({
-          path: '/login'
+          path: '/login',
+          query: { redirect: to.fullPath }
         })
       }
     } else {
       // 没登录则跳转到登录界面
       next({
-        path: '/login'
+        path: '/login',
+        query: { redirect: to.fullPath }
       })
     }
   } else {

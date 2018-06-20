@@ -3,14 +3,18 @@
     <div class="panel-header">
       <h3 class="panel-title"><a href="#">最新音乐</a></h3>
     </div>
-    <div class="panel-body" layout="row top-center" v-if="albumList">
+    <div class="panel-body" layout="row top-center" v-if="latestAlbums">
       <a href="#" class="album-card">
         <div class="cover"></div>
-        <p class="title">新歌推荐<span class="sub">推荐合口味的好音乐</span></p>
+        <p class="title">新歌推荐</p>
+        <p class="sub">推荐合口味的好音乐</p>
       </a>
-      <a href="#" class="album-card" v-for="item in albumList" :key="item.id">
+      <a href="#" class="album-card" v-for="item in latestAlbums" :key="item.id">
         <div class="cover" :style="{backgroundImage:`url(${item.song.album.picUrl})`}"></div>
-        <p class="title">{{item.name}}</p>
+        <p class="title">{{item.song.album.name}}</p>
+        <p class="sub">
+          <span v-for="artist in item.song.album.artists" :key="artist.id">{{artist.name}}</span>
+        </p>
       </a>
     </div>
   </div>
@@ -18,9 +22,9 @@
 
 <script>
 export default {
-  name: 'newestAlbums',
+  name: 'latestAlbums',
   props: {
-    albumList: {
+    latestAlbums: {
       type: Array
     }
   }
@@ -45,28 +49,41 @@ export default {
 
     border-radius: 5px;
   }
-  .title {
-    margin-top: 10px;
-    margin-bottom: 0;
-    height: 60px;
-    overflow: hidden;
-
-    color: #67686a;
-    font-size: 26px;
-    line-height: 32px;
-
+  .title,
+  .sub {
     word-break: break-all;
     text-overflow: ellipsis;
 
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
+  }
+  .title {
+    margin-top: 10px;
+    margin-bottom: 0;
+    height: 30px;
+    overflow: hidden;
 
-    .sub {
-      display: block;
+    color: #67686a;
+    font-size: 26px;
+    line-height: 32px;
+  }
+  .sub {
+    margin: 0;
 
-      color: #bbb;
-      font-size: 20px;
+    height: 28px;
+    overflow: hidden;
+
+    color: #bbb;
+    font-size: 20px;
+
+    > span {
+      &:after {
+        content: '/';
+      }
+      &:last-child:after {
+        display: none;
+      }
     }
   }
 }
