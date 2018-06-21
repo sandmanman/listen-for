@@ -1,16 +1,16 @@
 <template>
   <footer class="app-tabbbar">
     <div layout="row stretch-stretch">
-      <a href="#" class="tabbbar-item active" self="stretch">
-        <i class="icon icon-explore"></i>
+      <a href="#" class="tabbbar-item active" self="center">
+        <i class="icon icon-discover"></i>
         <span class="text">发现</span>
       </a>
       <a href="#" class="tabbbar-item" self="stretch">
-        <i class="icon icon-explore"></i>
+        <i class="icon icon-video"></i>
         <span class="text">视频</span>
       </a>
       <a href="#" class="tabbbar-item" self="stretch">
-        <i class="icon icon-user"></i>
+        <i class="icon icon-music"></i>
         <span class="text">我的</span>
       </a>
       <a href="#" class="tabbbar-item" self="stretch">
@@ -64,22 +64,67 @@ export default {
 }
 
 .tabbbar-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  min-height: 100%;
+
   color: #989493;
   font-size: 22px;
   text-decoration: none;
   text-align: center;
 
-  &.active {
-    color: #e64741;
-  }
-
   .icon {
     display: inline-block;
-    width: 48px;
-    height: 48px;
+    width: 52px;
+    height: 52px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
+  .icon-discover {
+    background-image: url('../assets/img/btm_icn_discovery@3x.png');
+  }
+  .icon-video {
+    background-image: url('../assets/img/btm_icn_video@3x.png');
+  }
+  .icon-music {
+    background-image: url('../assets/img/btm_icn_music@3x.png');
+  }
+  .icon-friends {
+    background-image: url('../assets/img/btm_icn_friend@3x.png');
+  }
+  .icon-account {
+    background-image: url('../assets/img/btm_icn_account@3x.png');
+  }
+
   .text {
+    margin-top: 6px;
     display: block;
+
+    line-height: 22px;
+  }
+
+  &.active {
+    color: #e64741;
+    .icon-discover {
+      background-image: url('../assets/img/btm_icn_discovery_active@3x.png');
+    }
+    .icon-video {
+      background-image: url('../assets/img/btm_icn_video_active@3x.png');
+    }
+    .icon-music {
+      background-image: url('../assets/img/btm_icn_music_active@3x.png');
+    }
+    .icon-friends {
+      background-image: url('../assets/img/btm_icn_friend_active@3x.png');
+    }
+    .icon-account {
+      background-image: url('../assets/img/btm_icn_account_active@3x.png');
+    }
   }
 }
 </style>

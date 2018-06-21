@@ -5,35 +5,41 @@
 
 import axios from 'axios'
 import qs from 'qs'
+import { Toast } from 'vant'
 
 import { BASE_URL } from './env'
 
 axios.defaults.baseURL = BASE_URL
 axios.defaults.timeout = 5000
-axios.defaults.withCredentials = true // `withCredentials` 表示跨域请求时是否需要使用凭证
+// axios.defaults.withCredentials = true // `withCredentials` 表示跨域请求时是否需要使用凭证
 
 // chack status
 // http状态码
 function checkStatus(response) {
   if (response && (response.status === 200 || response.status === 304 || response.status === 400)) {
-    return response.data
+    return response
   }
 
   return {
-    status: -404,
-    mseeage: '数据请求异常'
+    status: 417,
+    message: '加载出错啦，刷新页面重试'
   }
 }
 
 // chack code
 function checkCode(res) {
-  // code异常，这里已经包括网络错误，服务器错误，后端抛出的错误，可提示用户
-  if (res.status === -404) {
-    Toast.fail(res.mseeage)
+  // code异常,接口返回的错误
+  if (res.status === 417) {
+    Toast.fail(res.message)
   }
-  if (res.data && (!res.data.success)) {
-    Toast.fail(res.data.mseeage)
+
+  // 后端抛出的错误
+  switch(res.code) {
+    case 301:
+      Toast.fail('未登录')
+      break
   }
+
   return res
 }
 
@@ -41,7 +47,7 @@ function checkCode(res) {
 // 响应拦截
 axios.interceptors.response.use(
   response => {
-    console.log(response)
+    console.log(response.status, response.data)
     return response
   },
   error => {

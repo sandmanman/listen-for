@@ -39,7 +39,7 @@ export default {
 
   padding-top: 20px;
   
-  min-height: 238px;
+  height: 238px;
 
   &:before {
     content: '';
@@ -61,8 +61,13 @@ export default {
   margin-left: 12px;
   margin-right: 12px;
   overflow: hidden;
+  height: 100%;
 
   border-radius: 11px;
+
+  > div {
+    height: 238px;
+  }
 }
 .swipe-item {
   width: 100%;

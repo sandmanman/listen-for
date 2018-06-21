@@ -3,7 +3,7 @@
     <div class="header-control-bar" layout="row center-center">
       <div class="search-bar ignore" layout="row center-center">
         <i class="icon-search"></i>
-        <span class="text">雪 很好听哦</span>
+        <span class="text">给你推荐 土耳其冰淇淋</span>
       </div>
     </div>
     <nav class="navbar" layout="row center-center">
@@ -78,9 +78,11 @@ export default {
 
   color: #fff;
   font-size: 32px;
-  font-weight: bold;
   text-decoration: none;
 
+  &.active {
+    font-weight: 600;
+  }
   &.active:after {
     content: '';
 

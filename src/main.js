@@ -4,10 +4,12 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
-// toast
-import Toast from 'vant/lib/toast'
+// vant 
 import 'vant/lib/vant-css/base.css'
 import 'vant/lib/vant-css/toast.css'
+import { Loading } from 'vant'
+
+Vue.use(Loading)
 
 // Loadsh
 var _ = require('lodash/core')

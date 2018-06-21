@@ -33,7 +33,9 @@ a {
 
   transform: scaleY(0.5);
 }
-
+.flickity-viewport {
+  height: 100% !important;
+}
 .flickity-page-dots {
   bottom: 12px !important;
 

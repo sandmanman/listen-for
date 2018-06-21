@@ -1,9 +1,13 @@
 <template>
   <div class="container">
     <header-wrap></header-wrap>
-    <div class="main">
+
+    <van-loading v-show="showLoading" type="spinner" color="black" style="margin-left:auto;margin-right:auto;"/>
+
+    <div class="main" v-show="isLoaded">
       <banner-swipe :banners="banners"></banner-swipe>
-      <quick-menu></quick-menu>
+      
+      <quick-menu :daily="daily"></quick-menu>
 
       <div class="space-line"></div>
 
@@ -13,6 +17,7 @@
       <latest-albums :latestAlbums="latestAlbums"></latest-albums>
       <!-- 主播电台 -->
       <dj-radios :djRadios="djRadios"></dj-radios>
+
     </div>
 
     <tabbar></tabbar>
@@ -41,43 +46,58 @@ export default {
   },
   data(){
     return {
+      showLoading: true,
+      isLoaded: false,
       banners: null,
       playlist: null,
       latestAlbums: null,
-      djRadios: null
+      djRadios: null,
+      daily: 21
     }
   },
-  created() {
+  mounted() {
     // get data
-    this.getBanners()
-    this.getPlaylist()
-    this.getLatestAlbums()
-    this.getDjRadios()
+    var banners = this.getBanners(),
+        playlist = this.getPlaylist(),
+        aatestAlbums = this.getLatestAlbums(),
+        djRadios = this.getDjRadios()
+    
+    Promise.all([banners, playlist, aatestAlbums, djRadios])
+      .then((res)=>{
+        this.$nextTick(function(){
+          this.showLoading = false
+          this.isLoaded = true
+        })
+      })
+      .catch((error)=>{
+        console.log(error)
+      })
+
   },
   methods: {
     // 获取banner
     getBanners: async function() {
       let res = await this.$http.get('/banner')
-      this.banners = res.banners
+      return this.banners = res.data.banners
     },
 
     // 获取推荐歌单
     // to do 登录后推荐歌单数据不同
     getPlaylist: async function() {
       let res = await this.$http.get('/personalized?limit=6')
-      this.playlist = res.result
+      return this.playlist = res.data.result
     },
     
     // 获取最新音乐
     getLatestAlbums: async function() {
       let res = await this.$http.get('/personalized/newsong')
-      this.latestAlbums = _.slice(res.result, 0 , 5)
+      return this.latestAlbums = _.slice(res.data.result, 0 , 5)
     },
 
     // 获取主播电台
     getDjRadios: async function() {
       let res = await this.$http.get('/personalized/djprogram?limit=6')
-      this.djRadios = res.result
+      return this.djRadios = res.data.result
     }
 
   }
@@ -86,7 +106,14 @@ export default {
 
 <style lang="scss">
 .main {
-  margin-top: 185px;
+  position: absolute;
+  top: 185px;
+  right: 0;
+  left: 0;
+  bottom: 98px;
+
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .panel {
   padding-left: 8px;
