@@ -51,10 +51,12 @@ export default {
     display: inline-block;
     width: 94px;
     height: 94px;
-    overflow: hidden;
 
-    background: #e04936;
-    border-radius: 100%;
+    background-color: #e04936;
+    background: linear-gradient(to right,#f74e38 0,#e04936 100%);
+    border-radius: 94px;
+
+    box-shadow: 0 3px 10px #ffd9d4;
 
     &:before {
       content: '';
@@ -98,6 +100,7 @@ export default {
 
     color: #fff;
     font-size: 24px;
+    font-weight: lighter;
   }
 }
 </style>

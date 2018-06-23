@@ -1,0 +1,56 @@
+//
+// nav bar
+//
+.nav-bar {
+  position: relative;
+  
+  height: $nav-bar-min-height;
+  overflow: hidden;
+
+  background: $color-primary;
+}
+.nav-bar-left,
+.nav-bar-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+.nav-bar-right {
+  right: 15px;
+}
+.nav-bar-left {
+  left: 15px;
+}
+.nav-bar-center {
+  max-width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+
+  color: #fff;
+  font-size: 34px;
+  line-height: $nav-bar-min-height;
+  text-align: center;
+}
+
+.nav-bar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 66px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.nav-bar-icon {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.nav-bar-icon-back {
+  background-image: url('./assets/img/nav_bar_icn_back@3x.png');
+}

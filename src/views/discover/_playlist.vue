@@ -3,7 +3,7 @@
     <div class="panel-header">
       <h3 class="panel-title"><a href="#">推荐歌单</a></h3>
     </div>
-    <div class="panel-body" layout="row top-center" v-if="playlist">
+    <div class="panel-body" layout="row top-center">
       <a href="#" class="playlist-card" v-for="item in playlist" :key="item.id">
         <div class="cover" :style="{backgroundImage:`url(${item.picUrl})`}"></div>
         <p class="title">{{item.name}}</p>

@@ -12,11 +12,5 @@ export default {
 
 <style lang="scss">
 @import 'flex-layout-attribute';
-@import './assets/css/custom.scss';
-
-#app {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 640px;
-}
+@import './assets/css/app.scss';
 </style>

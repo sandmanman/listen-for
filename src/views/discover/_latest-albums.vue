@@ -3,7 +3,7 @@
     <div class="panel-header">
       <h3 class="panel-title"><a href="#">最新音乐</a></h3>
     </div>
-    <div class="panel-body" layout="row top-center" v-if="latestAlbums">
+    <div class="panel-body" layout="row top-center">
       <a href="#" class="album-card">
         <div class="cover"></div>
         <p class="title">新歌推荐</p>

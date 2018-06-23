@@ -1,10 +1,10 @@
 <template>
   <footer class="app-tabbbar">
     <div layout="row stretch-stretch">
-      <a href="#" class="tabbbar-item active" self="center">
+      <router-link to="/discover" class="tabbbar-item" self="stretch">
         <i class="icon icon-discover"></i>
         <span class="text">发现</span>
-      </a>
+      </router-link>
       <a href="#" class="tabbbar-item" self="stretch">
         <i class="icon icon-video"></i>
         <span class="text">视频</span>
@@ -17,10 +17,10 @@
         <i class="icon icon-friends"></i>
         <span class="text">朋友</span>
       </a>
-      <a href="#" class="tabbbar-item" self="stretch">
+      <router-link to="/account" class="tabbbar-item" self="stretch">
         <i class="icon icon-account"></i>
         <span class="text">账号</span>
-      </a>
+      </router-link>
     </div>
   </footer>
 </template>
@@ -41,7 +41,7 @@ export default {
 
   height: 98px;
 
-  background: rgba(231, 231, 232, .97);
+  background: rgba(245, 245, 245, 0.9);
 
   > div {
     height: 100%;
@@ -102,13 +102,13 @@ export default {
   }
 
   .text {
-    margin-top: 6px;
+    margin-top: 7px;
     display: block;
 
     line-height: 22px;
   }
 
-  &.active {
+  &.router-link-active {
     color: #e64741;
     .icon-discover {
       background-image: url('../assets/img/btm_icn_discovery_active@3x.png');

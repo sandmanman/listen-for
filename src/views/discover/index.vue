@@ -2,21 +2,23 @@
   <div class="container">
     <header-wrap></header-wrap>
 
-    <van-loading v-show="showLoading" type="spinner" color="black" style="margin-left:auto;margin-right:auto;"/>
+    <div class="main">
+      <van-loading v-show="showLoading" type="spinner" color="black" class="loading-block"/>
 
-    <div class="main" v-show="isLoaded">
-      <banner-swipe :banners="banners"></banner-swipe>
-      
-      <quick-menu :daily="daily"></quick-menu>
+      <div v-if="isLoaded">
+        <banner-swipe :banners="banners" v-if="banners"></banner-swipe>
+        
+        <quick-menu :daily="daily"></quick-menu>
 
-      <div class="space-line"></div>
+        <div class="space-line"></div>
 
-      <!-- 推荐歌单 -->
-      <playlist :playlist="playlist"></playlist>
-      <!-- 最新音乐 -->
-      <latest-albums :latestAlbums="latestAlbums"></latest-albums>
-      <!-- 主播电台 -->
-      <dj-radios :djRadios="djRadios"></dj-radios>
+        <!-- 推荐歌单 -->
+        <playlist :playlist="playlist" v-if="playlist"></playlist>
+        <!-- 最新音乐 -->
+        <latest-albums :latestAlbums="latestAlbums" v-if="latestAlbums"></latest-albums>
+        <!-- 主播电台 -->
+        <dj-radios :djRadios="djRadios" v-if="djRadios"></dj-radios>
+      </div>
 
     </div>
 
@@ -55,7 +57,7 @@ export default {
       daily: 21
     }
   },
-  mounted() {
+  created() {
     // get data
     var banners = this.getBanners(),
         playlist = this.getPlaylist(),
@@ -64,9 +66,12 @@ export default {
     
     Promise.all([banners, playlist, aatestAlbums, djRadios])
       .then((res)=>{
+        this.showLoading = false
+        this.isLoaded = true
+        
         this.$nextTick(function(){
-          this.showLoading = false
-          this.isLoaded = true
+          const loadingEle = document.getElementsByClassName("loading-block")
+          loadingEle[0].remove()
         })
       })
       .catch((error)=>{

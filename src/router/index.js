@@ -1,17 +1,39 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const Home = r => require.ensure([], () => r(require('@/views/home')), 'home')
+const Discover = r => require.ensure([], () => r(require('@/views/discover')), 'discover')
+const Account = r => require.ensure([], () => r(require('@/views/account')), 'account')
+const Login = r => require.ensure([], () => r(require('@/views/account/login')), 'login')
+const LoginMobile = r => require.ensure([], () => r(require('@/views/account/login-mobile')), 'loginMobile')
 
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'hash',
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      redirect: '/discover'
+    },
+    {
+      path: '/discover',
+      name: 'discover',
+      component: Discover
+    },
+    {
+      path: '/account',
+      name: 'account',
+      component: Account
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login
+    },
+    {
+      path: '/login-mobile',
+      name: 'loginMobile',
+      component: LoginMobile
     }
   ]
 })
@@ -21,9 +43,9 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if ( to.matched.some(res => res.meta.auth) ) {
     // 判断是否需要登录权限
-    if (window.localStorage.getItem('currentUserInfo')) {
+    if (window.localStorage.getItem('currentUser')) {
       // 判断是否登录
-      let lifeTime = JSON.parse(window.localStorage.getItem('currentUserInfo')).lifeTime * 1000
+      let lifeTime = JSON.parse(window.localStorage.getItem('currentUser')).lifeTime * 1000
       let currentTime = new Date().getTime() // 当前时间的时间戳
       if (currentTime < lifeTime) {
         next()

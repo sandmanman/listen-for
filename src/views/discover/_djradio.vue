@@ -3,7 +3,7 @@
     <div class="panel-header">
       <h3 class="panel-title"><a href="#">主播电台</a></h3>
     </div>
-    <div class="panel-body" layout="row top-center" v-if="djRadios">
+    <div class="panel-body" layout="row top-center">
       <a href="#" class="djradio-card" v-for="item in djRadios" :key="item.id">
         <div class="cover" :style="{backgroundImage:`url(${item.picUrl})`}"></div>
         <p class="title">{{item.name}}</p>
