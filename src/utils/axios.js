@@ -5,13 +5,12 @@
 
 import axios from 'axios'
 import qs from 'qs'
-import { Toast } from 'vant'
 
 import { BASE_URL } from './env'
 
 axios.defaults.baseURL = BASE_URL
 axios.defaults.timeout = 5000
-// axios.defaults.withCredentials = true // `withCredentials` 表示跨域请求时是否需要使用凭证
+axios.defaults.withCredentials = true // `withCredentials` 表示跨域请求时是否需要使用凭证
 
 // chack status
 // http状态码
@@ -30,14 +29,13 @@ function checkStatus(response) {
 function checkCode(res) {
   // code异常,接口返回的错误
   if (res.status === 417) {
-    Toast.fail(res.message)
+    this.$toast.fail(res.message)
   }
 
-  // 后端抛出的错误
-  switch(res.code) {
-    case 301:
-      Toast.fail('未登录')
-      break
+  // 后端抛出的错误（根据具体项目接口返回的数据而定）
+  if ( res.data.code !== 200 ) {
+    console.log(res.status, res.data)
+    this.$toast.fail(res.data.msg)
   }
 
   return res
@@ -47,7 +45,6 @@ function checkCode(res) {
 // 响应拦截
 axios.interceptors.response.use(
   response => {
-    console.log(response.status, response.data)
     return response
   },
   error => {
@@ -66,9 +63,9 @@ axios.interceptors.request.use(
     }
 
     // 如需鉴权token，则头部要带token
-    if ( localStorage.token ) {
-      config.headers.Authorization = localStorage.token
-    }
+    // if ( localStorage.token ) {
+    //   config.headers.Authorization = localStorage.token
+    // }
 
     return config
   },
@@ -91,9 +88,7 @@ export default {
       (res) => {
         return checkCode(res)
       }
-    ).catch((error)=>{
-      console.log(error)
-    })
+    )
   },
   post(url, data) {
     return axios({
@@ -111,8 +106,6 @@ export default {
       (res) => {
         return checkCode(res)
       }
-    ).catch((error)=>{
-      console.log(error)
-    })
+    )
   }
 }

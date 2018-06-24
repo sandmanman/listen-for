@@ -86,6 +86,9 @@ export default {
     right: 8px;
     top: 60%;
 
+    height: 28px;
+    overflow: hidden;
+
     color: #fff;
     font-size: 22px;
 

@@ -8,15 +8,18 @@ import store from './store'
 // vant 
 import 'vant/lib/vant-css/base.css'
 import 'vant/lib/vant-css/toast.css'
-import { Loading } from 'vant'
+import { Toast } from 'vant'
 
-Vue.use(Loading)
+Vue.use(Toast)
 
 // Loadsh
 var _ = require('lodash/core')
 
 import axios from './utils/axios'
 Vue.prototype.$http = axios
+
+// utils
+import docCookies from '@/utils/cookies'
 
 Vue.config.productionTip = false
 

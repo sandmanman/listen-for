@@ -5,7 +5,7 @@
     <div class="panel-form">
       <div class="form-group">
         <i class="control-icon control-icon-mobile"></i>
-        <input type="number" class="input-control" placeholder="手机号" v-model="mobile">
+        <input type="number" class="input-control" placeholder="手机号" v-model.trim="mobile">
       </div>
       <div class="form-group">
         <i class="control-icon control-icon-pwd"></i>
@@ -19,24 +19,61 @@
 
 <script>
 import Navbar from '@/components/Navbar'
+
+import { Toast } from 'vant'
+
 export default {
   name: 'loginMobile',
+  beforeRouteEnter( to, from, next ) {
+    // 进入登录页面，判断currentUser是否存在
+    next( vm => {
+      if( window.localStorage.getItem('currentUser') ) {
+        vm.$router.push({path: '/'})
+      } else {
+        return false
+      }
+    })
+  },
   components: {
     Navbar
   },
   data() {
     return {
-      disabled: true,
+      disabled: false,
       mobile: null,
       password: null
     }
   },
-  watch: {
-
+  computed: {
+    // 校验手机号是否合法
+    verifyMobile: function() {
+      let mobileReg = /^(0|86|17951)?(13[0-9]|15[012356789]|166|17[3678]|18[0-9]|14[57])[0-9]{8}$/
+      return mobileReg.test(this.mobile)
+    }
   },
   methods: {
-    submitAccount: async function() {
-      let res = await this.$http.get('/login/cellphone')
+    submitAccount: function() {
+      if ( !this.mobile && !this.password ) {
+        Toast.fail('请输入手机号和密码')
+      } else if(!this.verifyMobile) {
+        Toast.fail('手机号不合法')
+      } else {
+        this.disabled = true
+        this.$http.get('/login/cellphone', {
+          phone: this.mobile,
+          password: this.password
+        }).then((res)=>{
+          if ( res.data.code == 200 ) {
+            // 登录成功
+            // 记录currentUser
+            window.localStorage.setItem('currentUser', JSON.stringify(res.data))
+            Toast.success('登录成功')
+            // 跳转页面
+            this.$router.push('/')
+          }
+        })
+      }
+      
     }
   }
 }

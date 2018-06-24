@@ -3,8 +3,6 @@
     <header-wrap></header-wrap>
 
     <div class="main">
-      <van-loading v-show="showLoading" type="spinner" color="black" class="loading-block"/>
-
       <div v-if="isLoaded">
         <banner-swipe :banners="banners" v-if="banners"></banner-swipe>
         
@@ -48,7 +46,6 @@ export default {
   },
   data(){
     return {
-      showLoading: true,
       isLoaded: false,
       banners: null,
       playlist: null,
@@ -56,6 +53,14 @@ export default {
       djRadios: null,
       daily: 21
     }
+  },
+  beforeCreate() {
+    this.$toast.loading({
+      mask: true,
+      duration: 0,
+      loadingType: 'spinner',
+      message: '加载中...'
+    })
   },
   created() {
     // get data
@@ -66,12 +71,11 @@ export default {
     
     Promise.all([banners, playlist, aatestAlbums, djRadios])
       .then((res)=>{
-        this.showLoading = false
         this.isLoaded = true
-        
+        this.$toast.clear()
+
         this.$nextTick(function(){
-          const loadingEle = document.getElementsByClassName("loading-block")
-          loadingEle[0].remove()
+          // 操作DOM
         })
       })
       .catch((error)=>{

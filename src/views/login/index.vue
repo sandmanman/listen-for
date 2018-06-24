@@ -5,14 +5,24 @@
       <h3>登录</h3>
     </div>
     <div class="content">
-      <router-link to="/login-mobile" class="control-btn">手机号登录</router-link>
+      <router-link to="/login/mobile" class="control-btn">手机号登录</router-link>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'login'
+  name: 'login',
+  beforeRouteEnter( to, from, next ) {
+    // 进入登录页面，判断currentUser是否存在
+    next( vm => {
+      if( window.localStorage.getItem('currentUser') ) {
+        vm.$router.push({path: '/'})
+      } else {
+        return false
+      }
+    })
+  },
 }
 </script>
 

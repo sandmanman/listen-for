@@ -55,16 +55,13 @@ export default {
   margin-right: 12px;
   overflow: hidden;
   min-height: 238px;
+
+  border-radius: 11px;
 }
 .swipe-item {
   overflow: hidden;
 
   background-color: #eee;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
-  border-radius: 11px;
 
   img {
     display: block;
