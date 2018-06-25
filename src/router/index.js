@@ -67,16 +67,16 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   if ( to.meta.requestAuth ) {
     // 判断是否需要登录权限
-    if (window.localStorage.getItem('currentUser')) {
-      console.log( 'currentUser:', JSON.parse(window.localStorage.getItem('currentUser')) ) 
+    if (window.localStorage.getItem('CURRENT_USER')) {
+      console.log( 'currentUser:', JSON.parse(window.localStorage.getItem('CURRENT_USER')) ) 
       next()
       // 登录过期
-      // let expirationTime = JSON.parse(window.localStorage.getItem('currentUser')).expirationTime * 1000
+      // let expirationTime = JSON.parse(window.localStorage.getItem('CURRENT_USER')).expirationTime * 1000
       // let currentTime = new Date().getTime() // 当前时间的时间戳
       // if (currentTime < expirationTime) {
       //   next()
       // } else {
-      //   window.localStorage.removeItem('currentUser')
+      //   window.localStorage.removeItem('CURRENT_USER')
       //   Toast.fail('登录已过期,请重新登录')
 
       //   next({

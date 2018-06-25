@@ -4,13 +4,13 @@
       <h3 class="panel-title"><a href="#">最新音乐</a></h3>
     </div>
     <div class="panel-body" layout="row top-center">
-      <a href="#" class="album-card">
+      <a href="#" class="album-card newest-card">
         <div class="cover"></div>
         <p class="title">新歌推荐</p>
         <p class="sub">推荐合口味的好音乐</p>
       </a>
       <a href="#" class="album-card" v-for="item in latestAlbums" :key="item.id">
-        <div class="cover" :style="{backgroundImage:`url(${item.song.album.picUrl})`}"></div>
+        <div class="cover" v-lazy:background-image="item.song.album.picUrl"></div>
         <p class="title">{{item.song.album.name}}</p>
         <p class="sub">
           <span v-for="artist in item.song.album.artists" :key="artist.id">{{artist.name}}</span>
@@ -86,5 +86,9 @@ export default {
       }
     }
   }
+}
+
+.newest-card .cover {
+  background-image: url('./img/disc_cover_new@3x.png');
 }
 </style>

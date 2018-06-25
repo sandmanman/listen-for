@@ -16,7 +16,7 @@ export default {
   beforeRouteEnter( to, from, next ) {
     // 进入登录页面，判断currentUser是否存在
     next( vm => {
-      if( window.localStorage.getItem('currentUser') ) {
+      if( window.localStorage.getItem('CURRENT_USER') ) {
         vm.$router.push({path: '/'})
       } else {
         return false

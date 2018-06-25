@@ -2,7 +2,7 @@
   <div class="banner-swipe">
     <swipe class="swipe" :autoplay="5000">
       <swipe-item class="swipe-item" v-for="(item, index) in banners" :key="index">
-        <img :src="item.picUrl">
+        <div class="img-outer" v-lazy:background-image="item.picUrl"></div>
       </swipe-item>
     </swipe>
   </div>
@@ -18,14 +18,6 @@ export default {
     Swipe,
     SwipeItem
   },
-  data() {
-    return {
-      flickityOptions: {
-        autoPlay: 5000,
-        prevNextButtons: false
-      }
-    }
-  },
   props: {
     banners: {
       type: Array
@@ -34,7 +26,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .banner-swipe {
   position: relative;
   padding-top: 20px;
@@ -54,19 +46,30 @@ export default {
   margin-left: 12px;
   margin-right: 12px;
   overflow: hidden;
-  min-height: 238px;
 
   border-radius: 11px;
 }
 .swipe-item {
+  position: relative;
+
   overflow: hidden;
+  height: 238px !important;
 
   background-color: #eee;
 
-  img {
+  .img-outer {
+    position: relative;
+    z-index: 1;
+
     display: block;
 
     width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 }
 </style>

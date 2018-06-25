@@ -5,6 +5,7 @@
 
 import axios from 'axios'
 import qs from 'qs'
+import Toast from 'vant'
 
 import { BASE_URL } from './env'
 
@@ -29,13 +30,13 @@ function checkStatus(response) {
 function checkCode(res) {
   // code异常,接口返回的错误
   if (res.status === 417) {
-    this.$toast.fail(res.message)
+    Toast.fail(res.message)
   }
 
   // 后端抛出的错误（根据具体项目接口返回的数据而定）
   if ( res.data.code !== 200 ) {
     console.log(res.status, res.data)
-    this.$toast.fail(res.data.msg)
+    Toast.fail(res.data.msg)
   }
 
   return res

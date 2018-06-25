@@ -8,9 +8,10 @@ import store from './store'
 // vant 
 import 'vant/lib/vant-css/base.css'
 import 'vant/lib/vant-css/toast.css'
-import { Toast } from 'vant'
+import { Toast, Lazyload } from 'vant'
 
 Vue.use(Toast)
+Vue.use(Lazyload)
 
 // Loadsh
 var _ = require('lodash/core')

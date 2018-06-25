@@ -59,7 +59,7 @@ export default {
       mask: true,
       duration: 0,
       loadingType: 'spinner',
-      message: '加载中...'
+      message: '正在加载...'
     })
   },
   created() {
@@ -75,7 +75,7 @@ export default {
         this.$toast.clear()
 
         this.$nextTick(function(){
-          // 操作DOM
+          document.getElementsByClassName('swipe')[0].style.height = 'auto'
         })
       })
       .catch((error)=>{

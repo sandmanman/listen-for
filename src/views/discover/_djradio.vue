@@ -5,7 +5,7 @@
     </div>
     <div class="panel-body" layout="row top-center">
       <a href="#" class="djradio-card" v-for="item in djRadios" :key="item.id">
-        <div class="cover" :style="{backgroundImage:`url(${item.picUrl})`}"></div>
+        <div class="cover" v-lazy:background-image="item.picUrl"></div>
         <p class="title">{{item.name}}</p>
         <span class="radio-name">{{item.program.radio.name}}</span>
       </a>

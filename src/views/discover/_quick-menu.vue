@@ -42,7 +42,7 @@ export default {
 .quick-menu-item {
   position: relative;
 
-  font-size: 28px;
+  font-size: 24px;
   text-align: center;
 
   .icon {

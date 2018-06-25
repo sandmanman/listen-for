@@ -27,7 +27,7 @@ export default {
   beforeRouteEnter( to, from, next ) {
     // 进入登录页面，判断currentUser是否存在
     next( vm => {
-      if( window.localStorage.getItem('currentUser') ) {
+      if( window.localStorage.getItem('CURRENT_USER') ) {
         vm.$router.push({path: '/'})
       } else {
         return false
@@ -66,7 +66,7 @@ export default {
           if ( res.data.code == 200 ) {
             // 登录成功
             // 记录currentUser
-            window.localStorage.setItem('currentUser', JSON.stringify(res.data))
+            window.localStorage.setItem('CURRENT_USER', JSON.stringify(res.data))
             Toast.success('登录成功')
             // 跳转页面
             this.$router.push('/')
