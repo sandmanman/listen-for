@@ -6,7 +6,6 @@ import { Toast } from 'vant'
 const Discover = resolve => require(['@/views/discover'], resolve)
 const Account = resolve => require(['@/views/account'], resolve)
 const Login = resolve => require(['@/views/login'], resolve)
-const LoginMobile = resolve => require(['@/views/login/mobile'], resolve)
 
 // 404
 const PageNotFound =  resolve => require(['@/views/error/404'], resolve)
@@ -33,22 +32,13 @@ const router = new Router({
       name: 'account',
       component: Account,
       meta: {
-        title: '账号',
-        requestAuth: true
+        title: '账号'
       }
     },
     {
       path: '/login',
       name: 'login',
       component: Login,
-      meta: {
-        title: '登录'
-      }
-    },
-    {
-      path: '/login/mobile',
-      name: 'loginMobile',
-      component: LoginMobile,
       meta: {
         title: '手机号登录'
       }

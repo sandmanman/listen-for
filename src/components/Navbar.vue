@@ -1,9 +1,9 @@
 <template>
   <div class="nav-bar">
     <div class="nav-bar-left">
-      <router-link :to="backPath" class="nav-bar-btn" v-if="showBackBtn">
+      <a href="javascript:;" @click="goBack" class="nav-bar-btn" v-if="showBackBtn">
         <i class="nav-bar-icon nav-bar-icon-back"></i>
-      </router-link>
+      </a>
     </div>
     <div class="nav-bar-center text-ellipsis">{{title}}</div>
     <div class="nav-bar-right">
@@ -23,10 +23,11 @@ export default {
     showBackBtn: {
       type: Boolean,
       default: true
-    },
-    backPath: {
-      type: String,
-      default: '/'
+    }
+  },
+  methods: {
+    goBack: function() {
+      this.$router.go(-1)
     }
   }
 }

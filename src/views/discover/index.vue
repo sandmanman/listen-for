@@ -3,7 +3,7 @@
     <header-wrap></header-wrap>
 
     <div class="page-discover" v-if="isLoaded">
-      <pull-refresh v-model="isLoading" :head-height="30" @refresh="onRefresh">
+      <pull-refresh v-model="isLoading" @refresh="onRefresh">
         <banner-swipe :banners="banners" v-if="banners"></banner-swipe>
         
         <quick-menu :daily="daily"></quick-menu>

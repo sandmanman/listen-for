@@ -67,7 +67,7 @@ export default {
     height: 100%;
     overflow: hidden;
 
-    background-position: top center;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
