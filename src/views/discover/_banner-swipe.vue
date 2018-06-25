@@ -53,7 +53,7 @@ export default {
   position: relative;
 
   overflow: hidden;
-  height: 238px !important;
+  height: 251px !important;
 
   background-color: #eee;
 

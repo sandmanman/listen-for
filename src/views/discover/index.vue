@@ -2,8 +2,8 @@
   <div class="container">
     <header-wrap></header-wrap>
 
-    <div class="main">
-      <div v-if="isLoaded">
+    <div class="page-discover" v-if="isLoaded">
+      <pull-refresh v-model="isLoading" :head-height="30" @refresh="onRefresh">
         <banner-swipe :banners="banners" v-if="banners"></banner-swipe>
         
         <quick-menu :daily="daily"></quick-menu>
@@ -16,11 +16,11 @@
         <latest-albums :latestAlbums="latestAlbums" v-if="latestAlbums"></latest-albums>
         <!-- 主播电台 -->
         <dj-radios :djRadios="djRadios" v-if="djRadios"></dj-radios>
-      </div>
-
+      </pull-refresh>
     </div>
 
     <tabbar></tabbar>
+
   </div>
 </template>
 
@@ -33,9 +33,12 @@ import Playlist from './_playlist'
 import LatestAlbums from './_latest-albums'
 import DjRadios from './_djradio'
 
+import { PullRefresh } from 'vant'
+
 export default {
   name: 'home',
   components: {
+    PullRefresh,
     Tabbar,
     HeaderWrap,
     BannerSwipe,
@@ -46,6 +49,7 @@ export default {
   },
   data(){
     return {
+      isLoading: false,
       isLoaded: false,
       banners: null,
       playlist: null,
@@ -64,24 +68,7 @@ export default {
   },
   created() {
     // get data
-    var banners = this.getBanners(),
-        playlist = this.getPlaylist(),
-        aatestAlbums = this.getLatestAlbums(),
-        djRadios = this.getDjRadios()
-    
-    Promise.all([banners, playlist, aatestAlbums, djRadios])
-      .then((res)=>{
-        this.isLoaded = true
-        this.$toast.clear()
-
-        this.$nextTick(function(){
-          document.getElementsByClassName('swipe')[0].style.height = 'auto'
-        })
-      })
-      .catch((error)=>{
-        console.log(error)
-      })
-
+    this.getAllData()
   },
   methods: {
     // 获取banner
@@ -107,6 +94,35 @@ export default {
     getDjRadios: async function() {
       let res = await this.$http.get('/personalized/djprogram?limit=6')
       return this.djRadios = res.data.result
+    },
+
+    getAllData: function() {
+      var banners = this.getBanners(),
+        playlist = this.getPlaylist(),
+        aatestAlbums = this.getLatestAlbums(),
+        djRadios = this.getDjRadios()
+    
+      Promise.all([banners, playlist, aatestAlbums, djRadios])
+        .then((res)=>{
+          this.isLoaded = true
+          this.isLoading = !this.isLoading
+          this.$toast.clear()
+
+          // this.$nextTick(function(){
+          //   // 操作DOM
+          // })
+        })
+        .catch((error)=>{
+          console.log(error)
+        })
+    },
+
+    // 下拉刷新
+    onRefresh: function() {
+      console.log('pull refresh')
+      setTimeout(()=>{
+        this.getAllData()
+      }, 1000)
     }
 
   }
@@ -114,7 +130,7 @@ export default {
 </script>
 
 <style lang="scss">
-.main {
+.page-discover {
   position: absolute;
   top: 185px;
   right: 0;
@@ -123,6 +139,66 @@ export default {
 
   overflow-x: hidden;
   overflow-y: auto;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 168px;
+    background-color: #d43c33;
+  }
+
+  .van-pull-refresh__head {
+    position: relative;
+    z-index: 1;
+
+    margin-bottom: -20px;
+
+    color: #fff;
+    font-size: 26px;
+
+    background-color: #d43c33;
+  }
+  .van-pull-refresh__text,
+  .van-pull-refresh__loading {
+    &:after {
+      content: '';
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 20px;
+
+      width: 200px;
+      height: 120px;
+      overflow: hidden;
+
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 135%;
+    }
+  }
+  .van-pull-refresh__text:after {
+    background-image: url('./img/mainpage_ddxx_ani_black_stage2.png');
+  }
+  .van-loading {
+    display: none;
+  }
+  .van-pull-refresh__loading:after {
+    animation-name: zhazhayan;
+    animation-duration: .7s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes zhazhayan {
+  from {
+    background-image: url('./img/mainpage_ddxx_ani_black_stage1.png');
+  }
+  to {
+    background-image: url('./img/mainpage_ddxx_ani_black_stage2.png');
+  }
 }
 .panel {
   padding-left: 8px;
