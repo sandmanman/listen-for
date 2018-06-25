@@ -38,7 +38,7 @@ export default {
     top: 0;
     right: 0;
     height: 168px;
-    background-color: #e64741;
+    background-color: #d43c33;
   }
 }
 .swipe {

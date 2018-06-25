@@ -52,8 +52,8 @@ export default {
     width: 94px;
     height: 94px;
 
-    background-color: #e04936;
-    background: linear-gradient(to right,#f74e38 0,#e04936 100%);
+    background-color: #d43c33;
+    background: linear-gradient(to right,#f74e38 0,#d43c33 100%);
     border-radius: 94px;
 
     box-shadow: 0 3px 10px #ffd9d4;

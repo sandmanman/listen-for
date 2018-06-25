@@ -29,7 +29,7 @@ export default {
   
   width: 100%;
 
-  background-color: #e64741;
+  background-color: #d43c33;
 }
 .header-control-bar {
   padding-top: 18px;
