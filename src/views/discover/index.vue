@@ -60,7 +60,6 @@ export default {
   },
   beforeCreate() {
     this.$toast.loading({
-      mask: true,
       duration: 0,
       loadingType: 'spinner',
       message: '正在加载...'

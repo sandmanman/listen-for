@@ -78,7 +78,6 @@ export default {
   methods: {
     getUserDetail: function() {
       this.$toast.loading({
-        mask: true,
         duration: 0,
         loadingType: 'spinner',
         message: '正在加载...'
@@ -99,7 +98,7 @@ export default {
     // 退出登录
     logout: function() {
       Dialog.confirm({
-        title: '确认退出登录？',
+        title: '退出登录？',
       }).then(() => {
         this.clearCurrentUser().then(()=>{
           this.$router.push('/')
