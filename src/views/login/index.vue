@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <navbar :title="`手机号登录`" :showBackBtn="true" :backPath="`/login`"></navbar>
+    <navbar :title="`手机号登录`"></navbar>
 
     <div class="panel-form">
       <div class="form-group">
@@ -66,10 +66,10 @@ export default {
           if ( res.data.code == 200 ) {
             // 登录成功
             // 记录currentUser
-            window.localStorage.setItem('CURRENT_USER', JSON.stringify(res.data))
+            window.localStorage.setItem('CURRENT_USER', JSON.stringify(res.data.account.id))
             Toast.success('登录成功')
-            // 跳转页面
-            this.$router.push('/')
+            // 返回上一页
+            this.$router.go(-1)
           }
         })
       }

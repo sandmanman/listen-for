@@ -1,0 +1,149 @@
+//
+// account css
+//
+@import '../../assets/css/var';
+.main {
+  position: absolute;
+  top: 88px;
+  right: 0;
+  left: 0;
+  bottom: 98px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  background-color: #eff0f2;
+}
+.user-basic-info {
+  padding: 30px 20px;
+  background-color: #fff;
+
+  .avatar {
+    display: block;
+    width: 125px;
+    height: 125px;
+    overflow: hidden;
+
+    background-color: #eee;
+    border-radius: 100%;
+  }
+  .info {
+    padding-left: 35px;
+  }
+  .name {
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    font-size: 36px;
+    font-weight: 400;
+  }
+
+  .level {
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    height: 32px;
+    overflow: hidden;
+
+    color: #98999b;
+    font-size: 22px;
+    line-height: 28px;
+    font-style: italic;
+
+    border: 1px solid #bdbec0;
+    border-radius: 30px;
+  }
+}
+
+.signin-btn {
+  display: inline-block;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  height: 50px;
+  overflow: hidden;
+
+  color: $color-primary;
+  font-size: 26px;
+  line-height: 50px;
+
+  border: 2px solid $color-primary;
+  border-radius: 52px;
+
+  &:active {
+    color: #fff;
+    background-color: $color-primary;
+  }
+}
+
+.helper-info {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  background-color: #fff;
+
+  .info-item {
+    position: relative;
+    text-align: center;
+    
+    &:after {
+      content: '';
+
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      width: 1px;
+      height: 100%;
+      overflow: hidden;
+
+      background-color: #e3e4e6;
+      transform: scaleX(.5);
+    }
+
+    &:last-child:after {
+      display: none;
+    }
+
+    .text,
+    .number {
+      display: block;
+    }
+
+    .text {
+      margin-bottom: 2px;
+
+      color: #a0a1a3;
+      font-size: 28px;
+    }
+    .number {
+      color: #303133;
+      font-size: 34px;
+    }
+
+    .icon-edit {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      overflow: hidden;
+
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-image: url('./img/set_icn_edit@3x.png');
+    }
+  }
+}
+
+.cells-group {
+  margin-top: 20px;
+
+  background-color: #fff;
+
+  .cell-item {
+    display: block;
+    padding: 25px 20px;
+
+    font-size: 30px;
+  }
+}

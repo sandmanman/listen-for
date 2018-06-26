@@ -8,6 +8,8 @@ import store from './store'
 // vant 
 import 'vant/lib/vant-css/base.css'
 import 'vant/lib/vant-css/toast.css'
+import 'vant/lib/vant-css/popup.css'
+import 'vant/lib/vant-css/dialog.css'
 import { Toast, Lazyload } from 'vant'
 
 Vue.use(Toast)

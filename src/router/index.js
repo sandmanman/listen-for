@@ -58,7 +58,6 @@ router.beforeEach((to, from, next) => {
   if ( to.meta.requestAuth ) {
     // 判断是否需要登录权限
     if (window.localStorage.getItem('CURRENT_USER')) {
-      console.log( 'currentUser:', JSON.parse(window.localStorage.getItem('CURRENT_USER')) ) 
       next()
       // 登录过期
       // let expirationTime = JSON.parse(window.localStorage.getItem('CURRENT_USER')).expirationTime * 1000
