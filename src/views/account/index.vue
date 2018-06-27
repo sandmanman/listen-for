@@ -43,7 +43,7 @@
 
     </div>
 
-    <tabbar></tabbar>
+    <app-tabbar></app-tabbar>
   </div>
   <div v-else>
     <login></login>
@@ -52,7 +52,7 @@
 
 <script>
 import Navbar from '@/components/Navbar'
-import Tabbar from '@/components/Tabbar'
+import AppTabbar from '@/components/Tabbar'
 import Login from './_login'
 
 import { Dialog } from 'vant'
@@ -61,7 +61,7 @@ export default {
   name: 'account',
   components: {
     Navbar,
-    Tabbar,
+    AppTabbar,
     Login
   },
   data() {

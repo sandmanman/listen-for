@@ -17,11 +17,6 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      redirect: '/discover'
-    },
-    {
-      path: '/discover',
-      name: 'discover',
       component: Discover,
       meta: {
         title: '发现'

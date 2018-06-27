@@ -1,7 +1,7 @@
 <template>
   <footer class="app-tabbbar">
     <div layout="row stretch-stretch">
-      <router-link to="/discover" class="tabbbar-item" self="stretch">
+      <router-link to="/" class="tabbbar-item" self="stretch">
         <i class="icon icon-discover"></i>
         <span class="text">发现</span>
       </router-link>

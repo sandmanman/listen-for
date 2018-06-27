@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <header-wrap></header-wrap>
+    <app-header></app-header>
 
     <div class="page-discover" v-if="isLoaded">
       <pull-refresh v-model="isLoading" @refresh="onRefresh">
@@ -19,14 +19,14 @@
       </pull-refresh>
     </div>
 
-    <tabbar></tabbar>
+    <app-tabbar></app-tabbar>
 
   </div>
 </template>
 
 <script>
-import Tabbar from '@/components/Tabbar'
-import HeaderWrap from './_header-wrap'
+import AppTabbar from '@/components/Tabbar'
+import AppHeader from './_header-wrap'
 import BannerSwipe from './_banner-swipe'
 import QuickMenu from './_quick-menu'
 import Playlist from './_playlist'
@@ -39,8 +39,8 @@ export default {
   name: 'home',
   components: {
     PullRefresh,
-    Tabbar,
-    HeaderWrap,
+    AppTabbar,
+    AppHeader,
     BannerSwipe,
     QuickMenu,
     Playlist,
@@ -152,8 +152,6 @@ export default {
   .van-pull-refresh__head {
     position: relative;
     z-index: 1;
-
-    margin-bottom: -20px;
 
     color: #fff;
     font-size: 26px;

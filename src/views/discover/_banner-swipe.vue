@@ -29,7 +29,7 @@ export default {
 <style lang="scss" scoped>
 .banner-swipe {
   position: relative;
-  padding-top: 20px;
+  padding-top: 10px;
 
   &:before {
     content: '';
