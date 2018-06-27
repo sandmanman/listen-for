@@ -92,7 +92,7 @@ router.afterEach((route) => {
   // 更改document.title
   let docTitle = route.meta.title
   if (docTitle) {
-      document.title = route.meta.title
+      document.title = route.meta.title || 'ListenFor'
   }
 })
 
