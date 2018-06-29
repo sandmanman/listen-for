@@ -7,6 +7,10 @@ const Discover = resolve => require(['@/views/discover'], resolve)
 const Account = resolve => require(['@/views/account'], resolve)
 const Login = resolve => require(['@/views/login'], resolve)
 
+// user
+const User = resolve => require(['@/views/user'], resolve)
+const UserHome = resolve => require(['@/views/user/home'], resolve)
+
 // 404
 const PageNotFound =  resolve => require(['@/views/error/404'], resolve)
 
@@ -37,6 +41,21 @@ const router = new Router({
       meta: {
         title: '手机号登录'
       }
+    },
+    {
+      path: '/user/:id',
+      component: User,
+      children: [
+        {
+          path: '',
+          name: 'userHome',
+          component: UserHome,
+          meta: {
+            title: '我的主页',
+            auth: true
+          }
+        }
+      ]
     },
     {
       path: '*',
@@ -72,7 +91,7 @@ router.beforeEach((to, from, next) => {
       // 没登录则跳转到登录界面
       next({
         path: '/login',
-        query: { redirect: to.fullPath }
+        query: { redirect: to.fullPath}
       })
     }
   } else {

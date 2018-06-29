@@ -70,8 +70,10 @@ export default {
             // 记录currentUser
             this.saveLocal(res.data.account.id).then(()=>{
               this.$toast.success('登录成功')
-              // 返回上一页
-              this.$router.go(-1)
+              let redirect = decodeURIComponent(this.$route.query.redirect || '/')
+              this.$router.push({
+                path: redirect
+              })
             })
             
           } else {
