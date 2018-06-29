@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import { Toast } from 'vant'
+import { getFromLocal } from '@/utils/localStorage'
 
 const Discover = resolve => require(['@/views/discover'], resolve)
 const Account = resolve => require(['@/views/account'], resolve)
@@ -48,11 +48,11 @@ const router = new Router({
 
 
 // 路由拦截
-// 需要鉴权,在路由 meta 添加requestAuth: true
+// 需要鉴权,在路由 meta 添加auth: true
 router.beforeEach((to, from, next) => {
-  if ( to.meta.requestAuth ) {
+  if ( to.matched.some(record => record.meta.auth) ) {
     // 判断是否需要登录权限
-    if (window.localStorage.getItem('CURRENT_USER')) {
+    if (getFromLocal('CURRENT_USER') !== null) {
       next()
       // 登录过期
       // let expirationTime = JSON.parse(window.localStorage.getItem('CURRENT_USER')).expirationTime * 1000
@@ -83,11 +83,11 @@ router.beforeEach((to, from, next) => {
 
 //
 //
-router.afterEach((route) => {
+router.afterEach(route => {
   // 更改document.title
   let docTitle = route.meta.title
   if (docTitle) {
-      document.title = route.meta.title || 'ListenFor'
+    document.title = route.meta.title || 'ListenFor'
   }
 })
 

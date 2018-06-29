@@ -19,15 +19,14 @@
 
 <script>
 import Navbar from '@/components/Navbar'
-
-import { Toast } from 'vant'
+import { saveToLocal, getFromLocal } from '@/utils/localStorage'
 
 export default {
   name: 'loginMobile',
   beforeRouteEnter( to, from, next ) {
     // 进入登录页面，判断currentUser是否存在
     next( vm => {
-      if( window.localStorage.getItem('CURRENT_USER') ) {
+      if( getFromLocal('CURRENT_USER') !== null ) {
         vm.$router.push({path: '/'})
       } else {
         return false
@@ -52,11 +51,14 @@ export default {
     }
   },
   methods: {
+    saveLocal: async function(id) {
+      await saveToLocal('CURRENT_USER', id)
+    },
     submitAccount: function() {
       if ( !this.mobile && !this.password ) {
-        Toast.fail('请输入手机号和密码')
+        this.$toast.fail('请输入手机号和密码')
       } else if(!this.verifyMobile) {
-        Toast.fail('手机号不合法')
+        this.$toast.fail('手机号不合法')
       } else {
         this.disabled = true
         this.$http.get('/login/cellphone', {
@@ -66,10 +68,14 @@ export default {
           if ( res.data.code == 200 ) {
             // 登录成功
             // 记录currentUser
-            window.localStorage.setItem('CURRENT_USER', JSON.stringify(res.data.account.id))
-            Toast.success('登录成功')
-            // 返回上一页
-            this.$router.go(-1)
+            this.saveLocal(res.data.account.id).then(()=>{
+              this.$toast.success('登录成功')
+              // 返回上一页
+              this.$router.go(-1)
+            })
+            
+          } else {
+            this.disabled = false
           }
         })
       }

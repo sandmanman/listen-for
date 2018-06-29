@@ -45,9 +45,11 @@
 
     <app-tabbar></app-tabbar>
   </div>
+
   <div v-else>
     <login></login>
   </div>
+  
 </template>
 
 <script>
@@ -56,6 +58,7 @@ import AppTabbar from '@/components/Tabbar'
 import Login from './_login'
 
 import { Dialog } from 'vant'
+import { removeFromLocal } from '@/utils/localStorage'
 
 export default {
   name: 'account',
@@ -92,7 +95,7 @@ export default {
 
     // 清除currentUser
     clearCurrentUser: async function() {
-      await window.localStorage.removeItem('CURRENT_USER')
+      await removeFromLocal('CURRENT_USER')
     },
 
     // 退出登录
@@ -101,8 +104,10 @@ export default {
         title: '退出登录？',
       }).then(() => {
         this.clearCurrentUser().then(()=>{
-          this.$router.push('/')
+          this.$router.push({path: '/'})
         })
+      }).catch(() => {
+        // on cancel
       })
     }
   }

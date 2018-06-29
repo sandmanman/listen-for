@@ -83,10 +83,12 @@ export default {
 
       position: absolute;
       left: 0;
-      top: 3px;
+      top: 50%;
 
-      width: 18px;
-      height: 18px;
+      transform: translateY(-50%);
+
+      width: 22px;
+      height: 22px;
 
       background-position: left center;
       background-repeat: no-repeat;

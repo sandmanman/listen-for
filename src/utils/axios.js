@@ -6,8 +6,8 @@
 import axios from 'axios'
 import qs from 'qs'
 import { Toast } from 'vant'
-
 import { BASE_URL } from './env'
+import { log } from '@/utils'
 
 axios.defaults.baseURL = BASE_URL
 axios.defaults.timeout = 5000
@@ -35,7 +35,7 @@ function checkCode(res) {
 
   // 后端抛出的错误（根据具体项目接口返回的数据而定）
   if ( res.data.code !== 200 ) {
-    console.log(res.status, res.data)
+    log(res.status, res.data)
     Toast.fail(res.data.msg)
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <transition name="bounce" mode="out-in" appear>
+  <transition name="bounce" appear>
     <div class="container-login">
       <div class="header">
         <router-link to="/" class="control-close-btn">&nbsp;</router-link>
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'login',
+  name: 'chooseLoginStyle',
   beforeRouteEnter( to, from, next ) {
     // 进入登录页面，判断currentUser是否存在
     next( vm => {
@@ -24,11 +24,12 @@ export default {
         return false
       }
     })
-  },
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/css/animation';
 .container-login {
   position: absolute;
   top: 0;
@@ -93,25 +94,10 @@ export default {
 
   animation-name: bounceInUp;
 }
-@keyframes bounceInUp {
-  from,
-  75%,
-  to {
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
+.bounce-leave-active {
+  animation-duration: .7s;
+  animation-fill-mode: both;
 
-  from {
-    opacity: 0;
-    transform: translate3d(0, 3000px, 0);
-  }
-
-  75% {
-    opacity: 1;
-    transform: translate3d(0, 10px, 0);
-  }
-
-  to {
-    transform: translate3d(0, 0, 0);
-  }
+  animation-name: bounceOutDown;
 }
 </style>
