@@ -67,35 +67,35 @@ export default {
   },
   created() {
     // get data
-    this.getAllData()
+    this.initData()
   },
   methods: {
     // 获取banner
     getBanners: async function() {
       let res = await this.$http.get('/banner')
-      return this.banners = res.data.banners
+      this.banners = res.data.banners
     },
 
     // 获取推荐歌单
     // to do 登录后推荐歌单数据不同
     getPlaylist: async function() {
       let res = await this.$http.get('/personalized?limit=6')
-      return this.playlist = res.data.result
+      this.playlist = res.data.result
     },
     
     // 获取最新音乐
     getLatestAlbums: async function() {
       let res = await this.$http.get('/personalized/newsong')
-      return this.latestAlbums = _.slice(res.data.result, 0 , 5)
+      this.latestAlbums = _.slice(res.data.result, 0 , 5)
     },
 
     // 获取主播电台
     getDjRadios: async function() {
       let res = await this.$http.get('/personalized/djprogram?limit=6')
-      return this.djRadios = res.data.result
+      this.djRadios = res.data.result
     },
 
-    getAllData: function() {
+    initData: function() {
       var banners = this.getBanners(),
         playlist = this.getPlaylist(),
         aatestAlbums = this.getLatestAlbums(),

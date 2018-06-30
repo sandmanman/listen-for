@@ -1,6 +1,7 @@
 //
 //
 //
+@import './var';
 @import './mixins';
 
 body {
@@ -93,5 +94,46 @@ a {
   .van-loading {
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+
+// user
+.user-home-tabs {
+  margin-top: -20px;
+
+  &.van-tabs--line {
+    padding-top: 80px;
+
+    .van-tabs__wrap {
+      height: 80px !important;
+    }
+  }
+  .van-tabs__nav {
+    padding-bottom: 0;
+    overflow: hidden;
+
+    background-color: #fff;
+    border-radius: 19px 19px 0 0;
+  }
+  .van-tab {
+    height: 80px;
+
+    font-size: 32px;
+    line-height: 80px;
+  }
+  .van-tab--active {
+    color: $color-primary;
+  }
+  .van-tabs__line {
+    bottom: 8px;
+
+    height: 6px;
+
+    background-color: $color-primary;
+    border-radius: 6px;
+  }
+  .van-hairline--top-bottom::after {
+    display: none;
   }
 }

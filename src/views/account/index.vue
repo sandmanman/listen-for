@@ -9,7 +9,11 @@
           <img :src="currentUser.profile.avatarUrl" class="avatar">
         </div>
         <div class="info" self="center">
-          <h1 class="name">{{currentUser.profile.nickname}}</h1>
+          <h1 class="name">
+            <router-link :to="`/user/${currentUser.profile.userId}`">
+              {{currentUser.profile.nickname}}
+            </router-link>
+          </h1>
           <a href="javascript:;" class="level">Lv.{{currentUser.level}}</a>
         </div>
         <a href="javascript:;" self="right" class="signin-btn">签到</a>

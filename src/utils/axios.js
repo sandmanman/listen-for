@@ -34,7 +34,7 @@ function checkCode(res) {
   }
 
   // 后端抛出的错误（根据具体项目接口返回的数据而定）
-  if ( res.data.code !== 200 ) {
+  if ( res.data && res.data.code !== 200 ) {
     log(res.status, res.data)
     Toast.fail(res.data.msg)
   }

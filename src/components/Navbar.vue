@@ -17,8 +17,7 @@ export default {
   name: 'navbar',
   props: {
     title: {
-      type: String,
-      default: 'ListenFor'
+      type: String
     },
     showBackBtn: {
       type: Boolean,
