@@ -22,6 +22,7 @@ const router = new Router({
     {
       path: '/',
       component: Discover,
+      name: 'discover',
       meta: {
         title: '发现'
       }
